@@ -1,0 +1,17 @@
+# Optional: a local PostgreSQL identical to production, for when you'd rather not use the
+# embedded development database.
+#   docker compose up -d
+#   DATABASE_URL=postgres://ppc:ppc@localhost:5432/ppc npm run db:setup
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: ppc
+      POSTGRES_PASSWORD: ppc
+      POSTGRES_DB: ppc
+    ports:
+      - "5432:5432"
+    volumes:
+      - ppc-data:/var/lib/postgresql/data
+volumes:
+  ppc-data:
